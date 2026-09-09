@@ -2,8 +2,8 @@
 window.SITE = {
   CA:      "SOON",                       /* строго "SOON" до лаунча, потом 0x… (42 символа) */
   X_URL:   "https://x.com/soon",
-  NAME:    "GTP: Characters",
-  TICKER:  "$CAST",
+  NAME:    "Grand Theft Pons",
+  TICKER:  "$GTP",
   TAGLINE: ""
 };
 window.PONS_HOME = "https://www.ponsfamily.com/launchpad";
