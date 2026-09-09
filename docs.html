@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="config.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GTP: Characters Docs</title>
+<meta name="description" content="Field manual for GTP Characters, eight legends in one city" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/apple-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--ink:#140a17;--panel:#1e1022;--paper:#fff3ea;--hot:#ff3d8a;--amber:#ffb03a;--teal:#37d7d0;--dim:#b596a8;--line:rgba(255,243,234,.14);
+  --disp:"Archivo Black",Impact,sans-serif;--ui:"Barlow Condensed",Oswald,sans-serif;--pad:clamp(16px,3vw,40px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--ink);color:var(--paper);font-family:var(--ui);font-size:15.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px var(--pad);background:rgba(20,10,23,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:13px;text-transform:uppercase}
+.brand img{width:26px;height:26px}
+.brand small{font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.top nav{display:flex;gap:7px}
+.btn{height:32px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 14px;font-family:var(--disp);font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:var(--panel);color:var(--paper);border:1px solid var(--line);clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
+.btn svg{width:13px;height:13px}
+.btn.buy{background:var(--hot);color:#fff;border-color:var(--hot)}
+.btn.crumb{border-color:var(--amber);color:var(--amber)}
+.shell{display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(20px,4vw,52px);width:min(1020px,100%);margin:0 auto;padding:38px var(--pad) 84px;min-width:0}
+.side{position:sticky;top:78px;align-self:start;display:flex;flex-direction:column;gap:2px}
+.kick{font-family:var(--disp);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.side a{font-size:14.5px;padding:6px 11px;color:var(--dim);border-left:2px solid transparent}
+.side a:hover{color:var(--paper)}
+.side a.on{color:var(--paper);border-left-color:var(--hot);background:rgba(255,61,138,.1)}
+.hero{margin-bottom:26px}
+.hero h1{font-family:var(--disp);font-size:clamp(30px,5vw,56px);line-height:1;text-transform:uppercase;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--hot)}
+.hero p{margin-top:14px;font-size:16px;line-height:1.55;color:var(--dim);max-width:56ch;white-space:pre-line}
+.sec{background:var(--panel);padding:clamp(18px,2.6vw,28px);margin-bottom:14px;border:1px solid var(--line)}
+.sec h2{font-family:var(--disp);font-size:clamp(20px,2.6vw,28px);line-height:1.1;margin-bottom:13px;text-transform:uppercase;letter-spacing:-.01em}
+.sec h2 i{font-style:normal;font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:9px}
+.sec p{font-size:15.5px;line-height:1.6;color:#e0cad6;max-width:66ch}
+.sec p + p{margin-top:8px}
+.rows{display:grid;margin-top:14px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:160px 1fr;gap:13px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.5}
+.row dt{font-family:var(--disp);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding-top:5px}
+.row dd{color:#e0cad6}
+.tree{margin-top:14px;font-family:ui-monospace,monospace;font-size:12.5px;line-height:1.9;white-space:pre;overflow-x:auto;padding:14px 16px;background:#0f070f;border:1px solid var(--line);color:#e0cad6}
+.tree b{color:var(--amber);font-weight:600}
+.ca{display:grid;justify-items:center;gap:9px;max-width:100%;padding:16px;margin-top:14px;background:#0f070f;border:1px dashed rgba(255,243,234,.3);cursor:pointer}
+.ca small{font-family:var(--disp);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber)}
+.ca b{font-family:var(--disp);font-size:clamp(20px,3.4vw,28px);text-transform:uppercase;white-space:nowrap;max-width:100%}
+.ca.live{border-style:solid;border-color:var(--amber)}
+.ca.live b{font-family:var(--ui);font-weight:600;font-size:clamp(11px,2.7vw,16px);color:var(--amber);text-transform:none}
+.ca .copy{font:inherit;font-family:var(--disp);font-size:8.5px;letter-spacing:.14em;padding:6px 12px;background:transparent;color:var(--paper);border:1px solid rgba(255,243,234,.3);cursor:pointer}
+.ca.live .copy{border-color:var(--amber);color:var(--amber)}
+.links{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.faq{display:grid;gap:8px;margin-top:12px}
+.faq div{padding:12px 15px;background:#0f070f;border:1px solid var(--line)}
+.faq b{font-family:var(--disp);font-size:13px;text-transform:uppercase;display:block;margin-bottom:4px;color:var(--teal)}
+.faq span{font-size:15px;line-height:1.5;color:#e0cad6}
+.foot{width:min(1020px,100%);margin:0 auto;padding:0 var(--pad) 44px;font-family:var(--disp);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#6d4f60;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:820px){
+  .shell{grid-template-columns:minmax(0,1fr);gap:16px;padding-top:18px}
+  main{min-width:0}
+  .side{position:static;flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:6px;scrollbar-width:none;max-width:100%}
+  .side .kick{display:none}
+  .side a{white-space:nowrap;font-size:14px;padding:5px 12px;border:1px solid var(--line);border-left:1px solid var(--line)}
+  .row{grid-template-columns:1fr;gap:3px}
+  .top nav .btn.buy span{display:none}
+  .brand span{display:none}
+  .ca{width:100%}
+}
+.btn[data-link="x"] svg{width:14px;height:14px}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/"><img src="assets/favicon.png" alt="" /><span data-name>GTP: Characters</span><small>docs</small></a>
+  <nav>
+    <a class="btn" href="/"><span>The cast</span></a>
+    <a class="btn buy" data-link="pons" href="https://www.ponsfamily.com/launchpad"><span>Buy</span><svg><use href="#i-pons"/></svg></a>
+    <a class="btn" data-link="x" href="https://x.com" aria-label="X"><svg><use href="#i-x"/></svg></a>
+    <span class="btn crumb">Docs</span>
+  </nav>
+</header>
+
+<div class="shell">
+  <aside class="side">
+    <span class="kick">Field manual</span>
+    <a href="#what" class="on">What is this</a>
+    <a href="#cast">The eight</a>
+    <a href="#stats">The stats</a>
+    <a href="#site">Using the site</a>
+    <a href="#token">Token</a>
+    <a href="#local">Nothing is stored</a>
+    <a href="#faq">FAQ</a>
+  </aside>
+
+  <main>
+    <div class="hero">
+      <h1>GTP <em>Characters</em></h1>
+      <p>Eight playable legends, one city, nobody is the good one
+A character switch wheel and nothing to press</p>
+    </div>
+
+    <section id="what" class="sec">
+      <h2><i>01 · Overview</i>What is <span data-name>GTP: Characters</span></h2>
+      <p>Grand Theft Pons had the cover, the map and the delay. This is the cast page: the eight faces that have been in every timeline since 2010, finally living in the same city on the same coast at the same sunset.</p>
+      <p>Scroll and the game switches character. The screen blows out, the wheel turns, the new one is standing there with their own stats already filled in. It is the switch from the game, without the game.</p>
+      <div class="rows">
+        <dl class="row"><dt>Format</dt><dd>Eight full screen key arts, one switch wheel, four stat bars</dd></dl>
+        <dl class="row"><dt>Palette</dt><dd>Hot pink, amber, teal, film grain, sun on the water</dd></dl>
+        <dl class="row"><dt>Sister site</dt><dd>Grand Theft Pons, the cover and the countdown that keeps slipping</dd></dl>
+        <dl class="row"><dt>Chain</dt><dd>Robinhood Chain, token through the Pons launchpad</dd></dl>
+      </div>
+    </section>
+
+    <section id="cast" class="sec">
+      <h2><i>02 · Roster</i>The eight</h2>
+      <div class="tree"><b>playable</b>
+├── Doge        the driver       has never once explained where he is going
+├── Pepe        the dealer       sells nothing, knows everybody, never leaves the pool
+├── Wojak       the night shift  drives until six in the morning, then thinks about it
+├── Trollface   the hacker       was in the room the whole time and said nothing
+├── Gigachad    the door         decides who gets in, and it is not you
+├── Cheems      the badge        writes all of it down and files none of it
+├── Grumpy Cat  the boss         says no first, then asks what it was
+└── Pink Wojak  the mark         bought the top, held the bag, is somehow still here</div>
+      <p>They are types, not people. Nobody real is being cast here and none of them are based on anyone living.</p>
+    </section>
+
+    <section id="stats" class="sec">
+      <h2><i>03 · Stats</i>Four bars</h2>
+      <p>Driving, Shooting, Stamina, Luck. They refill on every switch and none of them are balanced. The boss cannot drive. The mark has ninety six stamina and four luck, which is the entire joke and also the whole story.</p>
+      <div class="rows">
+        <dl class="row"><dt>Highest driving</dt><dd>Doge, ninety eight, and he still will not say where</dd></dl>
+        <dl class="row"><dt>Highest luck</dt><dd>Grumpy Cat, one hundred, because she stopped taking risks</dd></dl>
+        <dl class="row"><dt>Lowest luck</dt><dd>Pink Wojak, four, and he has never once complained</dd></dl>
+      </div>
+    </section>
+
+    <section id="site" class="sec">
+      <h2><i>04 · Controls</i>Using the site</h2>
+      <div class="rows">
+        <dl class="row"><dt>Scroll</dt><dd>Switches character. One per screen, eight in total</dd></dl>
+        <dl class="row"><dt>The wheel</dt><dd>Bottom right. It turns so the active face is always at the top</dd></dl>
+        <dl class="row"><dt>Sound</dt><dd>Quiet until you tap. Your first click anywhere starts a slow loop</dd></dl>
+        <dl class="row"><dt>The end</dt><dd>The full cast in a grid, then the contract on a loading slab</dd></dl>
+      </div>
+    </section>
+
+    <section id="token" class="sec">
+      <h2><i>05 · Token</i>Token</h2>
+      <p>One token for the whole cast, launching on Robinhood Chain through the Pons launchpad. The contract sits at the end of the page and here. Until then both say soon and the copy button says not yet.</p>
+      <div class="ca" id="ca"><small>Contract</small><b id="caVal">soon</b><button class="copy" id="caCopy">Copy</button></div>
+      <div class="links">
+        <a class="btn buy" data-link="pons" href="https://www.ponsfamily.com/launchpad">Buy on Pons<svg><use href="#i-pons"/></svg></a>
+        <a class="btn" data-link="x" href="https://x.com" aria-label="X"><svg><use href="#i-x"/></svg></a>
+      </div>
+      <div class="rows">
+        <dl class="row"><dt>Chain</dt><dd>Robinhood Chain, EVM, addresses start with 0x</dd></dl>
+        <dl class="row"><dt>Launchpad</dt><dd>Pons, ponsfamily.com. Buy opens the launchpad, and the token page once the address is in</dd></dl>
+        <dl class="row"><dt>Chart</dt><dd>DexScreener on Robinhood Chain once the token is live</dd></dl>
+      </div>
+    </section>
+
+    <section id="local" class="sec">
+      <h2><i>06 · Privacy</i>Nothing is stored</h2>
+      <p>No backend, no account, no cookies, nothing written to your browser. Eight pictures, eight faces and your scroll position.</p>
+      <div class="rows">
+        <dl class="row"><dt>Music</dt><dd>One CC0 loop from OpenGameArt, plays after your first tap</dd></dl>
+        <dl class="row"><dt>Reduced motion</dt><dd>If your system asks for it the grain and the switch flash stop, the characters still change</dd></dl>
+        <dl class="row"><dt>Affiliation</dt><dd>None. Not a game, not connected to any game or studio, not advice</dd></dl>
+      </div>
+    </section>
+
+    <section id="faq" class="sec">
+      <h2><i>07 · FAQ</i>Questions</h2>
+      <div class="faq">
+        <div><b>Is this a real game</b><span>No. It is a cast page for a game that does not exist and will not be made</span></div>
+        <div><b>Can I play as any of them</b><span>You already are. The scroll is the switch and there is nothing else to press</span></div>
+        <div><b>Why is nobody the good one</b><span>Look at the roster again</span></div>
+        <div><b>Where is the map and the trailer</b><span>On the other site, along with the release date that keeps moving</span></div>
+        <div><b>What happens at launch</b><span>The contract appears on the slab, buy starts pointing at the token page, the cast stays the same</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="foot"><span data-name>GTP: Characters</span><span>Robinhood Chain · Pons</span></footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-pons" viewBox="0 0 64 64"><path d="M14 8h24c11 0 18 7 18 17s-7 17-18 17h-9v12a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3z" fill="currentColor"/><path d="M29 20h8c4 0 6.5 2 6.5 5s-2.5 5-6.5 5h-8z" fill="#fff" opacity=".9"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 2H22l-7.1 8.1L23 22h-6.6l-5.2-6.8L5.3 22H2.1l7.6-8.7L1.5 2h6.7l4.7 6.2L18.9 2zm-1.1 18h1.8L7.3 3.9H5.4L17.8 20z"/></symbol>
+</svg>
+
+<script>
+(function(){
+  var S = window.SITE, CA = (S.CA||"SOON").trim(), HAS_CA = CA !== "SOON" && CA !== "";
+  document.querySelectorAll('[data-name]').forEach(function(e){ e.textContent = S.NAME; });
+  document.title = S.NAME + ' Docs';
+  document.querySelectorAll('[data-link="pons"]').forEach(function(a){ a.href = HAS_CA ? window.PONS_HOME + '/' + CA : window.PONS_HOME; a.target='_blank'; a.rel='noopener'; });
+  document.querySelectorAll('[data-link="x"]').forEach(function(a){ a.href = S.X_URL || 'https://x.com'; a.target='_blank'; a.rel='noopener'; });
+  var caBox = document.getElementById('ca'), caVal = document.getElementById('caVal'), caCopy = document.getElementById('caCopy');
+  caVal.textContent = HAS_CA ? CA : 'soon';
+  if(HAS_CA){ caBox.classList.add('live'); caBox.title = CA; }
+  caBox.addEventListener('click', function(){ var old = caCopy.textContent; if(HAS_CA){ if(navigator.clipboard) navigator.clipboard.writeText(CA); caCopy.textContent = 'Copied'; } else { caCopy.textContent = 'Not yet'; } setTimeout(function(){ caCopy.textContent = old; }, 1200); });
+  var links = [].slice.call(document.querySelectorAll('.side a')), secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function spy(){ var y = window.scrollY + 130, cur = 0; secs.forEach(function(s, i){ if(s && s.offsetTop <= y) cur = i; }); links.forEach(function(a, i){ a.classList.toggle('on', i === cur); }); }
+  addEventListener('scroll', spy, { passive: true }); spy();
+})();
+</script>
+</body>
+</html>
